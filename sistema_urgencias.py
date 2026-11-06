@@ -5,22 +5,16 @@ from cola import ColaDinamica, ColaEstatica, ColaPrioridad
 from lista_doble import ListaDoble, NodoDoble
 from ordenamiento import ordenar_recursivo
 from pila import PilaDinamica, PilaEstatica
-
-
 class Servicio:
 
     def __init__(self, nombre: str) -> None:
         self.nombre = nombre
         self.pacientes = ListaDoble()
-
-
 class Consultorio:
 
     def __init__(self, numero: int, cola: ColaDinamica | ColaEstatica) -> None:
         self.numero = numero
         self.cola = cola
-
-
 class SistemaUrgencias:
 
     def __init__(
@@ -55,8 +49,6 @@ class SistemaUrgencias:
 
         self._indice: dict[int, tuple[Servicio, NodoDoble]] = {}
 
-
-
     def _buscar_servicio(self, nombre: str) -> Servicio:
         for i in range(len(self.servicios)):
             if self.servicios[i].nombre == nombre:
@@ -83,21 +75,12 @@ class SistemaUrgencias:
 
 
     def donde_esta(self, documento: int) -> str | None:
-        """Devuelve el nombre del servicio donde esta el paciente, o None.
 
-        Complejidad: O(1) tiempo, O(1) espacio.
-        """
         entrada = self._indice.get(documento)
         return None if entrada is None else entrada[0].nombre
 
     def admitir(self, paciente: Any, nombre_servicio: str) -> None:
-        """Mete un paciente nuevo en un servicio.
 
-        Da ValueError si el servicio no existe o el paciente ya esta
-        admitido. Da OverflowError si la pila estatica esta llena.
-
-        Complejidad: O(s) tiempo (buscar el servicio), O(1) espacio.
-        """
         servicio = self._buscar_servicio(nombre_servicio)
         if paciente.documento in self._indice:
             raise ValueError("El paciente ya esta admitido")
