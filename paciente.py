@@ -1,19 +1,10 @@
-"""Paciente de la Entrega 1 (movido de main.py a su propio modulo)."""
-
 from typing import Any
-
-
 class Paciente:
-    """Un paciente. Se compara y ordena por numero de documento.
-
-    Los operadores aceptan tambien un int (el documento), lo que permite
-    usar busqueda_binaria y ListaDoble.buscar con solo el numero.
-    """
 
     def __init__(self, documento: int, triage: int, hora_llegada: int) -> None:
         self.documento = documento
-        self.triage = triage  # 1 (mas grave) a 5
-        self.hora_llegada = hora_llegada  # minuto del dia, 0 a 1440
+        self.triage = triage  
+        self.hora_llegada = hora_llegada  
 
     def __repr__(self) -> str:
         return (

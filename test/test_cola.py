@@ -1,4 +1,3 @@
-# Autor de las pruebas: ____________  (debe ser distinto del autor de cola.py)
 import heapq
 import random
 
@@ -83,10 +82,6 @@ def test_n_veces(tipo: str) -> None:
         assert cola.desencolar() == i
     assert cola.esta_vacia()
 
-
-# ---------------- cola de prioridad ----------------
-
-
 def test_prioridad_vacia() -> None:
     cola = ColaPrioridad()
     assert cola.esta_vacia() and len(cola) == 0
@@ -95,13 +90,11 @@ def test_prioridad_vacia() -> None:
     with pytest.raises(IndexError):
         cola.ver_min()
 
-
 def test_prioridad_un_elemento() -> None:
     cola = ColaPrioridad()
     cola.insertar(5, "x")
     assert cola.ver_min() == "x" and len(cola) == 1
     assert cola.extraer_min() == "x" and cola.esta_vacia()
-
 
 def test_prioridad_sale_el_menor_primero() -> None:
     cola = ColaPrioridad()
@@ -109,13 +102,11 @@ def test_prioridad_sale_el_menor_primero() -> None:
         cola.insertar(clave, dato)
     assert [cola.extraer_min() for _ in range(5)] == ["a", "b", "c", "d", "e"]
 
-
 def test_prioridad_empate_sale_el_que_llego_antes() -> None:
     cola = ColaPrioridad()
     for i in range(20):
         cola.insertar(1, i)
     assert [cola.extraer_min() for _ in range(20)] == list(range(20))
-
 
 def test_prioridad_clave_compuesta_triage_y_llegada() -> None:
     cola = ColaPrioridad()
@@ -126,7 +117,6 @@ def test_prioridad_clave_compuesta_triage_y_llegada() -> None:
     assert cola.extraer_min() == "nivel1-tarde"
     assert cola.extraer_min() == "nivel2-temprano"
 
-
 def test_prioridad_coincide_con_heapq_en_5000_aleatorios() -> None:
     azar = random.Random(3)
     cola = ColaPrioridad()
@@ -134,11 +124,10 @@ def test_prioridad_coincide_con_heapq_en_5000_aleatorios() -> None:
     for i in range(5000):
         clave = azar.randint(1, 5)
         cola.insertar(clave, i)
-        heapq.heappush(referencia, (clave, i))  # i desempata por llegada
+        heapq.heappush(referencia, (clave, i))  
     for _ in range(5000):
         assert cola.extraer_min() == heapq.heappop(referencia)[1]
     assert cola.esta_vacia()
-
 
 def test_prioridad_mezclando_insertar_y_extraer() -> None:
     azar = random.Random(4)

@@ -1,4 +1,3 @@
-# Autor de las pruebas: ____________  (debe ser distinto del autor de ordenar.py)
 import random
 import sys
 
@@ -7,13 +6,11 @@ import pytest
 from arreglo_dinamico import ArregloDinamico
 from ordenamiento import ordenar_iterativo, ordenar_recursivo
 
-
 def arreglo_de(valores: list[int]) -> ArregloDinamico:
     a = ArregloDinamico()
     for v in valores:
         a.agregar(v)
     return a
-
 
 @pytest.mark.parametrize("ordenar", [ordenar_recursivo, ordenar_iterativo])
 @pytest.mark.parametrize(
@@ -22,13 +19,11 @@ def arreglo_de(valores: list[int]) -> ArregloDinamico:
 def test_casos_borde(ordenar, valores: list[int]) -> None:
     assert list(ordenar(arreglo_de(valores))) == sorted(valores)
 
-
 @pytest.mark.parametrize("ordenar", [ordenar_recursivo, ordenar_iterativo])
 def test_igual_que_sorted_en_mil_aleatorios(ordenar) -> None:
     azar = random.Random(5)
     valores = [azar.randint(-1000, 1000) for _ in range(1000)]
     assert list(ordenar(arreglo_de(valores))) == sorted(valores)
-
 
 @pytest.mark.parametrize("ordenar", [ordenar_recursivo, ordenar_iterativo])
 def test_no_modifica_el_original(ordenar) -> None:
@@ -36,25 +31,19 @@ def test_no_modifica_el_original(ordenar) -> None:
     ordenar(original)
     assert list(original) == [3, 1, 2]
 
-
 @pytest.mark.parametrize("ordenar", [ordenar_recursivo, ordenar_iterativo])
 def test_es_estable(ordenar) -> None:
     azar = random.Random(6)
     pares = [(azar.randint(1, 5), i) for i in range(500)]
-    resultado = list(ordenar(arreglo_de(pares), lambda p: p[0]))  # type: ignore[arg-type]
-    assert resultado == sorted(pares, key=lambda p: p[0])  # sorted tambien es estable
-
+    resultado = list(ordenar(arreglo_de(pares), lambda p: p[0])) 
+    assert resultado == sorted(pares, key=lambda p: p[0])  
 
 def test_recursivo_no_desborda_la_pila_con_datos_reales() -> None:
-    n = 50_000  # log2(50000) ~ 16 niveles, muy lejos de sys.getrecursionlimit()
+    n = 50_000  
     azar = random.Random(7)
     valores = [azar.random() for _ in range(n)]
     assert n > sys.getrecursionlimit()
     assert list(ordenar_recursivo(arreglo_de(valores))) == sorted(valores)
-
-
-# ---------- merge_sort de la Entrega 1 (en el lugar) ----------
-
 
 def test_merge_sort_en_el_lugar_igual_que_sorted_en_mil() -> None:
     from ordenamiento import merge_sort

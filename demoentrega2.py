@@ -1,7 +1,7 @@
 import random
 import time
 
-from main import generar_datos  # lo hecho en la Entrega 1
+from main import generar_datos  
 from sistema_urgencias import SistemaUrgencias
 
 SERVICIOS = ["Urgencias", "Observacion", "Cirugia"]
@@ -17,7 +17,7 @@ if __name__ == "__main__":
     inicio = time.perf_counter()
     for i in range(len(censo)):
         paciente = censo[i]
-        # los de triage 1 y 2 van a Urgencias, el resto se reparte
+
         if paciente.triage <= 2:
             servicio = "Urgencias"
         else:
@@ -30,7 +30,7 @@ if __name__ == "__main__":
 
     print("\n3. Trasladando un paciente de Observacion a Cirugia")
     paciente = None
-    for p in sistema.servicios[1].pacientes:  # servicio 1 = Observacion
+    for p in sistema.servicios[1].pacientes:  
         paciente = p
         break
     doc = paciente.documento

@@ -1,4 +1,3 @@
-# Autor de las pruebas: ____________  (debe ser distinto del autor de pila.py)
 import pytest
 
 from pila import PilaDinamica, PilaEstatica

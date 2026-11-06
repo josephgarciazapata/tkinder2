@@ -33,7 +33,7 @@ def _mezclar(
 
     i, j, k = lo, mid, lo
     while i < mid and j < hi:
-        if clave(a[i]) <= clave(a[j]):  # <= mantiene la estabilidad
+        if clave(a[i]) <= clave(a[j]):  
             aux[k] = a[i]
             i += 1
         else:
@@ -59,7 +59,7 @@ def _ordenar_rec(
     hi: int,
     clave: Callable[[Any], Any],
 ) -> None:
-    if hi - lo <= 1:  # caso base: 0 o 1 elementos ya estan ordenados
+    if hi - lo <= 1: 
         return
     mid = (lo + hi) // 2
     _ordenar_rec(a, aux, lo, mid, clave)

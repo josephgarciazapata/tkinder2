@@ -128,12 +128,11 @@ def cola_deque(n: int) -> None:
 def cola_list_pop0(n: int) -> None:
     cola: list[int] = []
     for i in range(n):
-        cola.append(i)  # noqa: PERF402  (el ciclo es lo que se mide)
+        cola.append(i) 
     while len(cola) > 0:
         cola.pop(0)
 
 
-# ---- Cola de prioridad: insertar n claves al azar y extraerlas todas ----
 def prioridad_propia(n: int) -> None:
     azar = random.Random(2)
     cola = ColaPrioridad()
