@@ -1,11 +1,3 @@
-"""Mediciones de la Entrega 2: estructuras propias contra la biblioteca estandar.
-
-La biblioteca estandar (list, deque, heapq, sorted) se usa SOLO aqui,
-como referencia de comparacion (regla de la caja negra).
-
-Ejecutar:  python medicion_entrega2.py
-"""
-
 import heapq
 import os
 import random
